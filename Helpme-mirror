@@ -101,7 +101,7 @@ cleanup()
 }
 selfupdate()
 {
-	curl https://del.dog/raw/helpme-mirror > ./.tmpscript 2> /dev/null
+	curl https://del.dog/raw/Help-me-mirror.sh > ./.tmpscript 2> /dev/null
 	[[ $(cat ./.tmpscript) = "" ]] && return 1
 	if ! cmp -s ./.tmpscript $0; then
 		echo "Script updated! Run again"
