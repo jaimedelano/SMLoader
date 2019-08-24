@@ -28,7 +28,7 @@ ptch_farm()
 }
 set_var()
 {
-	latest=$(curl http://pastebin.com/raw/mGMEFicV 2> /dev/null); [[ "$latest" =~ [0-9]\.[0-9]\.[0-9] ]] || latest=$(curl https://git.fuwafuwa.moe/SMLoadrDev/SMLoadr/raw/branch/master/VERSION.md 2> /dev/null)
+	latest=$(curl http://pastebin.com/raw/mGMEFicV 2> /dev/null); [[ "$latest" =~ [0-9]\.[0-9]\.[0-9] ]] || latest=$(curl https://raw.githubusercontent.com/mrmazakblu/SMLoader/master/VERSION.md 2> /dev/null)
 	current=$(cat smloadr/VERSION.md 2> /dev/null)
 	cdir=$PWD
 }
@@ -65,7 +65,7 @@ instal()
 {
 	[ -d smloadr ] && rm -rf smloadr
 	[ -d .smloadrcfg ] || mkdir .smloadrcfg
-	git clone https://git.fuwafuwa.moe/SMLoadrDev/SMLoadr smloadr 2> /dev/null
+	git clone https://github.com/mrmazakblu/SMLoader.git smloadr 2> /dev/null
 	cd smloadr
 	npm install > /dev/null 2> /dev/null || { echo > VERSION.md; return 1; }
 	sed -i 's/linux/android/' node_modules/openurl/openurl.js
@@ -101,7 +101,7 @@ cleanup()
 }
 selfupdate()
 {
-	curl https://del.dog/raw/helpme > ./.tmpscript 2> /dev/null
+	curl https://del.dog/raw/helpme-mirror > ./.tmpscript 2> /dev/null
 	[[ $(cat ./.tmpscript) = "" ]] && return 1
 	if ! cmp -s ./.tmpscript $0; then
 		echo "Script updated! Run again"
