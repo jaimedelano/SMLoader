@@ -6,11 +6,17 @@ module.exports = class ConfigService {
         this.configFile = configFile;
 
         this.config = {
-            saveLayout: "",
-            arl: ""
+            "naming": {
+                "path": "DOWNLOADS/%artist%/%albumName%",
+                "discPath": "%path%/Disc %disc%",
+                "albumName": "%album% (%type%)",
+                "fileName": "%number% %title%"
+            },
+            "arl": ""
         };
 
         this.loadConfig();
+        this.saveConfig();
     }
 
     loadConfig() {
